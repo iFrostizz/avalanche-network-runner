@@ -60,6 +60,9 @@ func main() {
 		goPath = build.Default.GOPATH
 	}
 	binaryPath := fmt.Sprintf("%s%s", goPath, "/src/github.com/ava-labs/avalanchego/build/avalanchego")
+	if len(os.Args) > 1 {
+		binaryPath = os.Args[1]
+	}
 	if err := run(log, binaryPath); err != nil {
 		log.Fatal("fatal error", zap.Error(err))
 		os.Exit(1)
